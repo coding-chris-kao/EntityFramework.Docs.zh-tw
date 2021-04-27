@@ -13,9 +13,9 @@ ms.locfileid: "100543350"
 ---
 # <a name="asynchronous-programming"></a>非同步程式設計
 
-非同步作業可避免在資料庫中執行查詢時封鎖執行緒。 非同步作業對於在豐富的用戶端應用程式中保持回應式 UI 很重要，也可以在 web 應用程式中增加輸送量，以便在 web 應用程式中釋放執行緒，以服務其他要求。
+非同步作業可避免在資料庫中執行查詢時阻塞執行緒。 非同步作業對於在豐富的用戶端應用程式中保持有反應的 UI 很重要，也可以在 web 應用程式中增加吞吐量，以便在 web 應用程式中釋放執行緒，以服務其他要求。
 
-在 .NET standard 之後，EF Core 提供非同步對應給所有執行 i/o 的同步方法。 這些與同步處理方法具有相同的效果，而且可以搭配 c # `async` 和關鍵字使用 `await` 。 例如，不使用 DbCoNtext，它會在執行資料庫 i/o 時封鎖執行緒，DbCoNtext. SaveChangesAsync 可以使用：
+在 .NET standard 之後，EF Core 提供非同步對應給所有執行 i/o 的同步方法。 這些與同步處理方法具有相同的效果，而且可以搭配 c # `async` 和關鍵字使用 `await` 。 例如，不使用 DbCoNtext.SaveChanges，因為它會在執行資料庫 i/o 時阻塞執行緒，可以使用 DbCoNtext.SaveChangesAsync 取代：
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/Async/Program.cs#SaveChangesAsync)]
 
@@ -32,7 +32,7 @@ ms.locfileid: "100543350"
 
 ## <a name="async-linq-operators"></a>非同步 LINQ 運算子
 
-為了支援以非同步方式執行 LINQ 查詢，EF Core 提供一組非同步擴充方法，可執行查詢並傳回結果。 這些對等的標準、同步 LINQ 運算子包括 ToListAsync、SingleAsync、AsAsyncEnumerable 等等：
+為了支援以非同步方式執行 LINQ 查詢，EF Core 提供一組對應標準、同步 LINQ 運算子的非同步擴充方法，可執行查詢並傳回結果。包括 ToListAsync、SingleAsync、AsAsyncEnumerable 等等：
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/Async/Program.cs#ToListAsync)]
 
